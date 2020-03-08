@@ -1,0 +1,19 @@
+parameters:
+    filesystem_database_path: '%kernel.project_dir%/%env(FILESYSTEM_DATABASE_PATH)%'
+services:
+    _defaults:
+        public: true
+        autowire: true      # Automatically injects dependencies in your services.
+        autoconfigure: true # Automatically registers your services as commands, event subscribers, etc.
+        bind:
+            $filesystemDatabasePath: '%filesystem_database_path%'
+
+
+    App\Domain\Model\Player\PlayerRepository:
+        alias: App\Infrastructure\InMemory\Repository\InMemoryPlayerRepository
+
+    App\Application\EventStore\EventStore:
+        alias: App\Infrastructure\InMemory\EventStore\InMemoryEventStore
+
+    App\Infrastructure\InMemory\Repository\InMemoryPlayerRepository: ~
+    App\Infrastructure\Filesystem\EventStore\FilesystemEventStore: ~
