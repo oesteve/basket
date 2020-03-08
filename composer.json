@@ -1,4 +1,6 @@
 {
+    "name": "oesteve/basket-manager",
+    "description": "Demo app implementing Domain-Driven Design and the Hexagonal Architecture",
     "type": "project",
     "license": "proprietary",
     "require": {
