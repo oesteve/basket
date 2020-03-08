@@ -1,6 +1,6 @@
 # Aplicación para la selección española de basket
 
-Proyetcto demo implementando DDD y arquitectura hexagonal sobre Symfony 5
+Proyecto demo implementando DDD y arquitectura hexagonal sobre Symfony 5
 
 ## Instalación
 
