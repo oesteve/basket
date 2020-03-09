@@ -18,6 +18,12 @@ class FilesystemEventStore implements EventStore
 
     public function __construct(string $filesystemDatabasePath, SerializerInterface $serializer)
     {
+        if(!is_dir($filesystemDatabasePath)){
+            if (!mkdir($filesystemDatabasePath, 0755,true) && !is_dir($filesystemDatabasePath)) {
+                throw new \RuntimeException(sprintf('Directory "%s" was not created', $filesystemDatabasePath));
+            }
+        }
+
         $this->path = sprintf('%s/%s', $filesystemDatabasePath, 'event_store');
         $this->serializer = $serializer;
         $this->read();

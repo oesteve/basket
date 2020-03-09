@@ -29,6 +29,12 @@ class FilesystemPlayerRepository implements PlayerRepository
 
     public function __construct(string $filesystemDatabasePath, EventDispatcher $eventDispatcher)
     {
+        if(!is_dir($filesystemDatabasePath)){
+            if (!mkdir($filesystemDatabasePath, 0755, true) && !is_dir($filesystemDatabasePath)) {
+                throw new \RuntimeException(sprintf('Directory "%s" was not created', $filesystemDatabasePath));
+            }
+        }
+
         $this->path = sprintf('%s/%s', $filesystemDatabasePath, 'players');
         $this->eventDispatcher = $eventDispatcher;
         $this->read();
